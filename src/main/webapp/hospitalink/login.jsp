@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HospitaLink | Login</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/hospitalink/assets/favicon.png" type="image/x-icon">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,8 +22,21 @@
         <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white">HospitaLink Login</h2>
         <p class="text-center text-gray-600 dark:text-gray-400 text-sm mb-6">Please enter your credentials to access the system.</p>
 
+        <!-- Error Message -->
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+            <div class="w-full bg-red-100 dark:bg-red-500/20 border border-red-400 dark:border-red-500 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg text-center text-sm" role="alert">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <%= error %>
+            </div>
+        <%
+            }
+        %>
+
         <!-- Login Form -->
-        <form class="space-y-5" action="your-login-handler" method="POST">
+        <form class="space-y-5" action="${pageContext.request.contextPath}/login" method="POST">
             
             <!-- Username -->
             <div class="relative">
