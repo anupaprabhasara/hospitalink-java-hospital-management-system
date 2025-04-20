@@ -1,5 +1,5 @@
 package com.hospitalink.model;
 
-public class Test {
+public class Admin {
 
 }

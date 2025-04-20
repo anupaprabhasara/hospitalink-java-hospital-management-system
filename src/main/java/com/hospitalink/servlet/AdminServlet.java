@@ -1,5 +1,5 @@
 package com.hospitalink.servlet;
 
-public class Test {
+public class AdminServlet {
 
 }

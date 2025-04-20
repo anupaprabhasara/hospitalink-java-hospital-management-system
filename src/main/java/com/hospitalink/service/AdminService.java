@@ -1,5 +1,5 @@
 package com.hospitalink.service;
 
-public class Test {
+public class AdminService {
 
 }
