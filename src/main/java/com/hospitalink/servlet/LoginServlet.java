@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         // Check if session already exists
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("admin") != null) {
-            response.sendRedirect(request.getContextPath() + "/dashboard");
+            response.sendRedirect(request.getContextPath() + "/admin");
             return;
         }
 
@@ -38,11 +38,12 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("admin", admin);
             session.setAttribute("adminId", admin.getAdminId());
             session.setAttribute("username", admin.getUsername());
+            session.setAttribute("fullname", admin.getFullName());
             session.setAttribute("role", admin.getRole());
             session.setMaxInactiveInterval(30 * 60); // Session expires after 30 minutes
 
             // Redirect to admin dashboard
-            response.sendRedirect(request.getContextPath() + "/dashboard");
+            response.sendRedirect(request.getContextPath() + "/admin");
         } else {
             // Authentication failed, redirect back to login page with error
             request.setAttribute("error", "Incorrect username or password!");
@@ -65,7 +66,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session != null && session.getAttribute("admin") != null) {
             // Redirect authenticated admin to dashboard
-            response.sendRedirect(request.getContextPath() + "/dashboard");
+            response.sendRedirect(request.getContextPath() + "/admin");
         } else {
             // Redirect to login page
             request.getRequestDispatcher("/hospitalink/login.jsp").forward(request, response);
