@@ -13,7 +13,7 @@
 		</a> <a href="patient"
 			class="flex items-center p-3 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition">
 			<i class="fas fa-user-injured mr-3"></i> Patients
-		</a> <a href="#"
+		</a> <a href="doctor"
 			class="flex items-center p-3 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition">
 			<i class="fas fa-user-md mr-3"></i> Doctors
 		</a> <a href="#"

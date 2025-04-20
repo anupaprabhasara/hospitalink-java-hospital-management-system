@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HospitaLink | Patients</title>
+  <title>HospitaLink | Doctors</title>
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/hospitalink/assets/favicon.png" type="image/x-icon">
 
   <!-- Tailwind CSS -->
@@ -33,12 +33,12 @@
       <!-- Actions: Create & Search -->
       <div class="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
 
-        <a href="${pageContext.request.contextPath}/patient?action=create" class="flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
+        <a href="${pageContext.request.contextPath}/doctor?action=create" class="flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
           <i class="fas fa-plus"></i> Create New
         </a>
 
         <div class="relative w-full md:w-1/3">
-          <input id="search" type="text" placeholder="Search patients..."
+          <input id="search" type="text" placeholder="Search doctors..."
             class="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-gray-100">
           <i class="fas fa-search absolute left-3 top-3 text-gray-400 dark:text-gray-300"></i>
         </div>
@@ -52,29 +52,29 @@
             <tr>
               <th class="px-6 py-4">ID</th>
               <th class="px-6 py-4">Full Name</th>
-              <th class="px-6 py-4">Gender</th>
-              <th class="px-6 py-4">Birth Date</th>
+              <th class="px-6 py-4">Specialty</th>
               <th class="px-6 py-4">Contact Number</th>
-              <th class="px-6 py-4">Address</th>
+              <th class="px-6 py-4">Email</th>
+              <th class="px-6 py-4">Created At</th>
               <th class="px-6 py-4 text-center">Actions</th>
             </tr>
           </thead>
           <tbody id="userTable" class="text-gray-700 dark:text-gray-300">
             <c:choose>
-              <c:when test="${not empty patients}">
-                <c:forEach var="patient" items="${patients}">
+              <c:when test="${not empty doctors}">
+                <c:forEach var="doctor" items="${doctors}">
                   <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td class="px-6 py-4">${patient.patientId}</td>
-                    <td class="px-6 py-4">${patient.fullName}</td>
-                    <td class="px-6 py-4">${patient.gender}</td>
-                    <td class="px-6 py-4">${patient.birthDate}</td>
-                    <td class="px-6 py-4">${patient.contactNumber}</td>
-                    <td class="px-6 py-4">${patient.address}</td>
+                    <td class="px-6 py-4">${doctor.doctorId}</td>
+                    <td class="px-6 py-4">${doctor.fullName}</td>
+                    <td class="px-6 py-4">${doctor.specialty}</td>
+                    <td class="px-6 py-4">${doctor.contactNumber}</td>
+                    <td class="px-6 py-4">${doctor.email}</td>
+                    <td class="px-6 py-4">${doctor.createdAt}</td>
                     <td class="px-6 py-4 text-center space-x-3">
-                      <a href="${pageContext.request.contextPath}/patient?action=edit&id=${patient.patientId}" class="text-green-500 hover:text-green-600">
+                      <a href="${pageContext.request.contextPath}/doctor?action=edit&id=${doctor.doctorId}" class="text-green-500 hover:text-green-600">
                         <i class="fas fa-edit"></i>
                       </a>
-                      <a href="${pageContext.request.contextPath}/patient?action=delete&id=${patient.patientId}" onclick="return confirmDelete(this.href);" class="text-red-500 hover:text-red-600">
+                      <a href="${pageContext.request.contextPath}/doctor?action=delete&id=${doctor.doctorId}" onclick="return confirmDelete(this.href);" class="text-red-500 hover:text-red-600">
                         <i class="fas fa-trash"></i>
                       </a>
                     </td>
@@ -84,7 +84,7 @@
               <c:otherwise>
                 <tr>
                   <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
-                    No patients found.
+                    No doctors found.
                   </td>
                 </tr>
               </c:otherwise>

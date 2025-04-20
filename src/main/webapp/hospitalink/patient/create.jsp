@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HospitaLink | Create Admin</title>
+  <title>HospitaLink | Create Patient</title>
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/hospitalink/assets/favicon.png" type="image/x-icon">
 
   <!-- Tailwind CSS -->
@@ -31,7 +31,7 @@
     <main class="flex-1 p-6 space-y-6">
 
       <!-- Full Width Form -->
-      <form action="${pageContext.request.contextPath}/admin" method="POST" class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full">
+      <form action="${pageContext.request.contextPath}/patient" method="POST" class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full">
 
         <input type="hidden" name="action" value="create">
 
@@ -40,52 +40,51 @@
           <!-- Left Side -->
           <div class="space-y-4">
             <div>
-              <label class="block text-sm font-medium mb-1" for="username">Username</label>
-              <input type="text" id="username" name="username" required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium mb-1" for="password">Password</label>
-              <input type="password" id="password" name="password" required
-                class="w-full px-4 py-2 mb-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                oninput="validatePassword()">
-              
-              <!-- Password Validation Info -->
-              <div class="text-sm space-y-1" id="passwordCriteria">
-                <p id="length" class="text-red-500">At least 8 characters</p>
-                <p id="uppercase" class="text-red-500">At least 1 uppercase letter</p>
-                <p id="number" class="text-red-500">At least 1 number</p>
-                <p id="special" class="text-red-500">At least 1 special character (!@#$%^&*)</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Side -->
-          <div class="space-y-4">
-            <div>
               <label class="block text-sm font-medium mb-1" for="fullName">Full Name</label>
               <input type="text" id="fullName" name="fullName" required
                 class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
             </div>
 
             <div>
-              <label class="block text-sm font-medium mb-1" for="role">Role</label>
-              <select id="role" name="role" required
+              <label class="block text-sm font-medium mb-1" for="birthDate">Birth Date</label>
+              <input type="date" id="birthDate" name="birthDate" required
                 class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                <option value="">Select Role</option>
-                <option value="Admin">Admin</option>
-                <option value="Staff">Staff</option>
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1" for="gender">Gender</label>
+              <select id="gender" name="gender" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
               </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1" for="contactNumber">Contact Number</label>
+              <input type="number" id="contactNumber" name="contactNumber" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
             </div>
           </div>
 
         </div>
 
+        <!-- Address -->
+        <div class="mt-6">
+          <label class="block text-sm font-medium mb-1" for="address">Address</label>
+          <textarea id="address" name="address" rows="3" required
+            class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"></textarea>
+        </div>
+
         <!-- Submit Button -->
         <div class="mt-8 flex justify-end">
-          <button id="submitButton" type="submit" class="flex items-center gap-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition" disabled>
-            <i class="fas fa-save"></i> Save Admin
+          <button type="submit" class="flex items-center gap-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
+            <i class="fas fa-save"></i> Save Patient
           </button>
         </div>
 
@@ -97,40 +96,6 @@
 
   <!-- JavaScript -->
   <%@ include file="../partials/script.jsp" %>
-
-  <script>
-    function validatePassword() {
-      const password = document.getElementById('password').value;
-      const length = document.getElementById('length');
-      const uppercase = document.getElementById('uppercase');
-      const number = document.getElementById('number');
-      const special = document.getElementById('special');
-      const submitButton = document.getElementById('submitButton');
-
-      // Criteria checks
-      const isLengthValid = password.length >= 8;
-      const isUppercaseValid = /[A-Z]/.test(password);
-      const isNumberValid = /[0-9]/.test(password);
-      const isSpecialValid = /[!@#$%^&*]/.test(password);
-
-      // Toggle criteria color
-      length.className = isLengthValid ? "text-green-500" : "text-red-500";
-      uppercase.className = isUppercaseValid ? "text-green-500" : "text-red-500";
-      number.className = isNumberValid ? "text-green-500" : "text-red-500";
-      special.className = isSpecialValid ? "text-green-500" : "text-red-500";
-
-      // Enable button only if all valid
-      if (isLengthValid && isUppercaseValid && isNumberValid && isSpecialValid) {
-        submitButton.disabled = false;
-        submitButton.classList.remove('bg-blue-400');
-        submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-      } else {
-        submitButton.disabled = true;
-        submitButton.classList.add('bg-blue-400');
-        submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-      }
-    }
-  </script>
 
 </body>
 </html>

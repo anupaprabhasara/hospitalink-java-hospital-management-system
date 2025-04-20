@@ -61,7 +61,7 @@ public class PatientService {
     // Get All Patients
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();
-        String query = "SELECT * FROM patients ORDER BY created_at DESC";
+        String query = "SELECT * FROM patients ORDER BY patient_id";
 
         try (Connection connection = DBConnection.getConnection();
              Statement stmt = connection.createStatement();
