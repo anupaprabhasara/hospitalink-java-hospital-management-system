@@ -1,9 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+    String uri = request.getRequestURI();
+    String pageTitle = "Dashboard";
+
+    if (uri.contains("/admin")) {
+        pageTitle = "Admins Management";
+    } else if (uri.contains("/patient")) {
+        pageTitle = "Patients Management";
+    } else if (uri.contains("/doctor")) {
+        pageTitle = "Doctors Management";
+    } else if (uri.contains("/medicine")) {
+        pageTitle = "Medicines Management";
+    } else if (uri.contains("/appointment")) {
+        pageTitle = "Appointments Management";
+    } else if (uri.contains("/report")) {
+        pageTitle = "Medical Reports Management";
+    }
+
+    request.setAttribute("pageTitle", pageTitle);
+%>
 
 <header
 	class="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-sm">
-	<h2 class="text-xl font-bold">Admins Management</h2>
+	<h2 class="text-xl font-bold">${pageTitle}</h2>
 	<div class="flex items-center space-x-4">
 		<div class="text-right text-sm">
 			<p>${sessionScope.fullname}</p>
