@@ -16,7 +16,7 @@
 		</a> <a href="doctor"
 			class="flex items-center p-3 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition">
 			<i class="fas fa-user-md mr-3"></i> Doctors
-		</a> <a href="#"
+		</a> <a href="appointment"
 			class="flex items-center p-3 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition">
 			<i class="fas fa-calendar-check mr-3"></i> Appointments
 		</a> <a href="medicine"
