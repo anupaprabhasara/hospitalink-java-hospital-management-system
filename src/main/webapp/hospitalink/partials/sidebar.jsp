@@ -7,7 +7,7 @@
 		<h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">HospitaLink</h1>
 	</div>
 	<nav class="flex-1 px-4 py-6 space-y-2">
-		<a href="#"
+		<a href="dashboard"
 			class="flex items-center p-3 rounded hover:bg-blue-100 dark:hover:bg-blue-900 transition">
 			<i class="fas fa-home mr-3"></i> Dashboard
 		</a> <a href="patient"
